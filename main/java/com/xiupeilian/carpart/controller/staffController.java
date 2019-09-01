@@ -57,6 +57,7 @@ public class staffController {
 		request.setAttribute("city",city.getName());
 		City county=  cityService.findCitysById(company.getCounty());
 		request.setAttribute("county",county.getName());
+		request.setAttribute("user",user);
 		request.setAttribute("id",id);
 		return "staff/editStaff";
 
@@ -64,7 +65,7 @@ public class staffController {
 	@RequestMapping("/editStaff")
 	public String editStaff(SysUser user){
 		userService.updateUser(user);
-		return "staff:/staffList";
+		return "redirect:/index/index";
 	}
 	@RequestMapping("/toAddStaff")
 	public  String toAddStaff(){
@@ -73,6 +74,6 @@ public class staffController {
 	@RequestMapping("/addStaff")
 	public  String addStaff(SysUser user){
 		userService.addStaff(user);
-		return "staff:/staffList";
+		return "redirect:/staffList";
 	}
 }

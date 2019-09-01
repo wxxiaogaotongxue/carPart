@@ -8,8 +8,8 @@
 <title>修配连汽配市场</title>
 
 <link href="${ctx}/css/index.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}//style.css" rel="stylesheet" type="text/css" />
-<link type="text/css" rel="stylesheet" href="${ctx}/static/validator/style/validator.css"></link>
+<link href="${ctx}/css/style.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="${ctx}/css/validator.css"></link>
 <script src="${ctx}/js/formValidator.js" type="text/javascript" charset="UTF-8"></script>
 <script src="${ctx}/js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
