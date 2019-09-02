@@ -19,4 +19,8 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SysUser findUserByEmail(String email);
 
     List<SysUser> findUserByVo(SysUser user);
+
+    void insertStaff(SysUser user);
+
+    void updatePasswordById(Integer id);
 }

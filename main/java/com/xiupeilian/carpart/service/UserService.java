@@ -42,4 +42,6 @@ public interface UserService {
 	SysUser findUserById(Integer id);
 
     void addStaff(SysUser user);
+
+    void updatePasswordById(Integer id);
 }

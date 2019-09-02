@@ -31,12 +31,12 @@
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiupeilian.carpart.model.SysUser" >
-    insert into sys_user (ID, LOGIN_NAME, USERNAME, 
+    insert into sys_user (LOGIN_NAME, USERNAME,
       PASSWORD, ROLE_ID, USER_STATUS, 
       EMAIL, COMPANY_ID, MANAGE_LEVEL, 
       PHONE, CREATE_TIME, LEADER, 
       REMARK)
-    values (#{id,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+    values ( #{loginName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{userStatus,jdbcType=INTEGER}, 
       #{email,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{manageLevel,jdbcType=INTEGER}, 
       #{phone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{leader,jdbcType=VARCHAR}, 
@@ -224,4 +224,13 @@
       </if>
 
   </select>
+  <insert id="insertStaff" parameterType="SysUser" >
+    insert into sys_user value(login_name,phone,email,password,username,remark,create_time,leader,role_id) values (#{loginName},#{phone},#{email},#{password},#{username},#{remark},#{createTime},#{leader},#{roleId})
+
+  </insert>
+  <update id="updatePasswordById" parameterType="integer" >
+    update  sys_user set password ='a3762af61e59520' where id=#{id}
+
+
+  </update>
 </mapper>

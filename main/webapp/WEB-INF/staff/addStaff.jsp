@@ -10,19 +10,19 @@
 <link href="${ctx}/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/css/style.css" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="${ctx}/css/validator.css"></link>
-<script src="${ctx}/js/formValidator.js" type="text/javascript" charset="UTF-8"></script>
-<script src="${ctx}/js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="${ctx}/js/validator/formValidator.js" type="text/javascript" charset="UTF-8"></script>
+<script src="${ctx}/js/validator/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$.formValidator.initConfig({formid:"registerForm",onerror:function(msg){},onsuccess:function(){top.jBox.tip("正在注册！",'loading');return true;}});
-	
+
 	//用户名
 	$("#loginName").formValidator({onshow:"请输入用户名",onfocus:"6-20位字母、数字、下划线组成",oncorrect:"该用户名可以注册"}).inputValidator({min:6,max:20,onerror:"用户名长度不满足要求"}).regexValidator({regexp:"username",datatype:"enum",onerror:"用户名格式不正确"})
 	    .ajaxValidator({
 	    type : "post",
 		url : "${ctx}/login/checkLoginName",
 		data:{"loginName" : function(){return $("#loginName").val();}},
-		success : function(data){	
+		success : function(data){
             if( data == "1" )
 			{
                 return true;
@@ -37,14 +37,14 @@ $(document).ready(function(){
 		onerror : "此用户名已被注册",
 		onwait : "正在对用户名进行合法性校验，请稍候..."
 	});
-	
+
 	//手机号
 	$("#telnum").formValidator({onshow:"请输入手机号",onfocus:"输入的手机号必须合法",oncorrect:"该手机号可以注册"}).inputValidator({min:11,max:11,onerror:"手机号码必须是11位的哦"}).regexValidator({regexp:"mobile",datatype:"enum",onerror:"手机号格式不正确"})
 	.ajaxValidator({
 	type : "post",
 	url : "${ctx}/login/checkPhone",
 	data:{"telnum" : function(){return $("#telnum").val();}},
-	success : function(data){	
+	success : function(data){
 	    if( data == "1" )
 		{
 	        return true;
@@ -59,14 +59,14 @@ $(document).ready(function(){
 	onerror : "此手机号已被注册",
 	onwait : "正在对手机号进行合法性校验，请稍候..."
 	});
-	
+
 	//邮箱
 	$("#email").formValidator({onshow:"请输入邮箱",onfocus:"此邮箱用来找回密码",oncorrect:"该邮箱可以注册"}).regexValidator({regexp:"email",datatype:"enum",onerror:"邮箱格式不正确"})
 	.ajaxValidator({
 	type : "post",
 	url : "${ctx}/login/checkEmail",
 	data:{"email" : function(){return $("#email").val();}},
-	success : function(data){	
+	success : function(data){
 	    if( data == "1" )
 		{
 	        return true;
@@ -81,9 +81,9 @@ $(document).ready(function(){
 	onerror : "此邮箱已被注册",
 	onwait : "正在对邮箱进行合法性校验，请稍候..."
 	});
-	
+
 	$("#password").formValidator({onshow:"请输入密码",onfocus:"密码必须为6位以上哦",oncorrect:"密码合法"}).inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"密码两边不能有空符号"},onerror:"密码不能为空,请确认"});
-	
+
 	$("#username").formValidator({onshow:"请输入姓名",onfocus:"请输入姓名",oncorrect:"格式正确"}).inputValidator({min:2,onerror:"不能少于2个字符"});
 });
 </script>
@@ -92,7 +92,7 @@ $(document).ready(function(){
                 <div class="pagebody13 wid" style="width:890px;">
                     <div class="pagebody13_left" style=""><h3>汽配商用户管理</h3></div>
                     <div class="pagebody13_right" style="width:630px">
-                        <form action="${ctx}/staff/addStaff" method="post"  id="registerForm">
+              <form action="${ctx}/staff/addStaff" method="post"  id="registerForm">
                             <ul>
                                 <h3>新增用户</h3>
 

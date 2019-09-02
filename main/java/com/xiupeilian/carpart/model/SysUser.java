@@ -134,6 +134,22 @@ public class SysUser implements Serializable {
         this.remark = remark == null ? null : remark.trim();
     }
 
-
-
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id=" + id +
+                ", loginName='" + loginName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roleId=" + roleId +
+                ", userStatus=" + userStatus +
+                ", email='" + email + '\'' +
+                ", companyId=" + companyId +
+                ", manageLevel=" + manageLevel +
+                ", phone='" + phone + '\'' +
+                ", createTime=" + createTime +
+                ", leader='" + leader + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

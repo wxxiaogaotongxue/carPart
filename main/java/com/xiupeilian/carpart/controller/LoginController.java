@@ -75,6 +75,10 @@ public class LoginController {
 			response.getWriter().write("2");
 		}
 	}
+	@RequestMapping("/toReLogin")
+	public  String toReLogin(Integer id){
+		return "login/toReLogin";
+	}
 
 	@RequestMapping("/checkPhone")
 	public void checkPhone(HttpServletResponse response, String telenum) throws IOException {
@@ -223,15 +227,35 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
-
+	@RequestMapping("/checkPhoneUser")
+	public void checkPhoneUser(String telnum,HttpServletResponse response) throws  Exception{
+		SysUser user=(SysUser)SecurityUtils.getSubject().getPrincipal();
+		SysUser sysUser=userService.findUserByPhone(telnum);
+		System.out.println(telnum);
+		if(user.getUsername().equals(sysUser.getUsername())){
+			response.getWriter().write(2);
+		}else {
+			response .getWriter().write(1);
+		}
+	}
 	@RequestMapping("/smsQuery")
-	public void smsQuery(String telnum, String code, HttpServletResponse response) throws Exception {
-		String telPhone = (String) jedis.boundValueOps(telnum).get();
+	public void smsQuery(String phone, String code, HttpServletResponse response) throws Exception {
+		String telPhone = (String) jedis.boundValueOps(phone).get();
+		System.out.println(phone);
 		if (telPhone == null) {
 			response.getWriter().write("1");
 		} else {
 			if (telPhone.equals(code)) {
-				response.getWriter().write("2");
+				SysUser user=userService.findUserByPhone(phone);
+				SysUser sysUser=(SysUser)SecurityUtils.getSubject().getPrincipal();
+				if(sysUser.getId()==user.getId()){
+					response.getWriter().write("2");
+					userService.updatePasswordById(sysUser.getId());
+				}else {
+					response.getWriter().write("4");
+                    userService.updatePasswordById(sysUser.getId());
+				}
+
 			} else {
 				response.getWriter().write("3");
 			}

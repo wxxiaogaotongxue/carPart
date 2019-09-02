@@ -121,7 +121,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addStaff(SysUser user) {
-		userMapper.insertSelective(user);
+		userMapper.insert(user);
+	}
+
+	@Override
+	public void updatePasswordById(Integer id) {
+		userMapper.updatePasswordById(id);
 	}
 
 

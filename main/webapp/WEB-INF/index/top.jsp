@@ -16,7 +16,9 @@
                 
                 <li>${now}</li>
                 <li></li>
-                <li class="tuichu" onclick = "javascript:if(confirm('您确定要退出吗？')){window.parent.location.href='${ctx}/logout}" ><a href="javascript:;;">退出</a></li>
+                <li class="tuichu" onclick = "javascript:if(confirm('您确定要退出吗？')){window.parent.location.href='${ctx}/logout'}" ><a href="javascript:;;">退出</a></li>
+                <li class="shezhi"  onclick="javascript:window.top.document.getElementById('body').src ='${ctx}/login/toReLogin?id='+${user.id}"><a href="javascript:">修改密码</a></li>
+
             </ul>
             <div class="clear"></div>
         </div>

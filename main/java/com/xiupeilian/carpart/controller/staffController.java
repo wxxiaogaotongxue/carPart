@@ -16,9 +16,11 @@ import org.springframework.stereotype.Controller;
 		import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 		import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -73,7 +75,15 @@ public class staffController {
 	}
 	@RequestMapping("/addStaff")
 	public  String addStaff(SysUser user){
+		SysUser user1=(SysUser)  SecurityUtils.getSubject().getPrincipal();
+		SysUser user2=userService.findUserById(user1.getId());
+		user.setLeader(user1.getUsername());
+		user.setRoleId(user1.getRoleId());
+		user.setCreateTime(new Date());
+		user.setUserStatus(0);
+		user.setCompanyId(user2.getCompanyId());
+		user.setManageLevel(0);
 		userService.addStaff(user);
-		return "redirect:/staffList";
+		return "redirect:/index/index";
 	}
 }

@@ -207,7 +207,6 @@ function getArea() {
 	}
 }
 </script>
-</head>
 
 <body  onload="getProvince()">
 	<div class="wid top1"><img src="${ctx}/images/logo1.jpg" /></div>
@@ -357,22 +356,22 @@ function getArea() {
 <div class="footer">Copyright © 2014-2024 www.xiupeilian.com  All Rights Reserved. 修配连 版权所有</div>
  <script type="text/javascript">
         $(function(){
-           var phone= $("#companyname").val();
+           var phone= $("#telnum").val();
            var code= $("#code1").val();
             $("#code1").blur(function(){
                 $.ajax({
                     type : "post",
                     url : "${ctx}/login/smsQuery",
                     data : {
-                        'telnum' : phone,
+                        'phone' : phone,
                         'code' : code
 
                     },
                     success : function(data) {
                         if(data=='1'){
                             $("#tips").html("验证码错误");
-                        }else if(data=='2'){
-                            $("#tips").html("账号或密码错误");
+                        }else if(data=='4'){
+                            $("#tips").html("验证码正确");
                         }else if(data=='3'){
                             //登录成功之后，到达首页 index
                             $("#tips").html("验证码失效");
