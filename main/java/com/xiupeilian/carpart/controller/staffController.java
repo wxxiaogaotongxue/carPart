@@ -35,10 +35,11 @@ public class staffController {
 	@Autowired
 	private CityService cityService;
 	@RequestMapping("/staffList")
-	public  String staffList(Integer pageSize, Integer pageNumber, HttpServletRequest request,SysUser user) throws IOException {
+	public  String staffList(Integer pageSize, Integer pageNum, HttpServletRequest request,SysUser user) throws IOException {
 		pageSize=pageSize==null?8:pageSize;
-		pageNumber=pageNumber==null?1:pageNumber;
-		PageHelper.startPage(pageNumber,pageSize);
+		pageNum=pageNum==null?1:pageNum;
+		System.out.println("pageNum"+pageNum);
+		PageHelper.startPage(pageNum,pageSize);
 		SysUser user1=(SysUser) SecurityUtils.getSubject().getPrincipal();
 		user.setCompanyId(user1.getCompanyId());
 		List<SysUser> userList=staffService.findUserByVo(user);
@@ -46,6 +47,7 @@ public class staffController {
 		request.setAttribute("page",info);
 		//搜索分页数据回显
 		request.setAttribute("items",user);
+		request.setAttribute("pageNum",pageNum);
 		return "staff/staffList";
 	}
 	@RequestMapping("/toEditStaff")
@@ -78,7 +80,7 @@ public class staffController {
 		SysUser user1=(SysUser)  SecurityUtils.getSubject().getPrincipal();
 		SysUser user2=userService.findUserById(user1.getId());
 		user.setLeader(user1.getUsername());
-		user.setRoleId(user1.getRoleId());
+		user.setRoleId(4);
 		user.setCreateTime(new Date());
 		user.setUserStatus(0);
 		user.setCompanyId(user2.getCompanyId());

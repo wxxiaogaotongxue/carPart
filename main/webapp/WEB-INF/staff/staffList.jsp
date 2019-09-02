@@ -98,10 +98,10 @@
                         <c:forEach begin="1" end="${page.pages}" var="pageSize">
                             <c:choose>
                                 <c:when test="${pageSize==page.pageNum}">
-                                    <a href="${ctx}/public/publicItems?pageNo=${pageSize}&pageSize=8&username=${username}}" style="background: #C30D23 none repeat scroll 0% 0%;color:#ffffff;">${pageSize}</a>
+                                    <a href="${ctx}/staff/staffList?pageNum=${pageSize}&username=${username}" style="background: #C30D23 none repeat scroll 0% 0%;color:#ffffff;">${pageSize}</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="${ctx}/public/publicItems?pageNo=${pageSize}&pageSize=8&username=${username}}" style="background: #C30D23 none repeat scroll 0% 0%;color:#ffffff;">${pageSize}</a>
+                                    <a href="${ctx}/staff/staffList?pageNum=${pageSize}&username=${username}" style="background: #C30D23 none repeat scroll 0% 0%;color:#ffffff;">${pageSize}</a>
                                 </c:otherwise>
                             </c:choose>
 
